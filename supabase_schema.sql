@@ -127,10 +127,14 @@ drop policy if exists "Allow public read access to trainings" on public.training
 create policy "Allow public read access to trainings" on public.trainings for select using (true);
 
 -- WRITE Policies (Authenticated Admin Access Only)
--- Profiles: Users can only update their own profile
+-- Profiles: Users can only update/insert their own profile
 drop policy if exists "Allow authenticated update to profiles" on public.profiles;
 create policy "Allow authenticated update to profiles" on public.profiles
   for update using (auth.uid() = id);
+
+drop policy if exists "Allow authenticated insert to profiles" on public.profiles;
+create policy "Allow authenticated insert to profiles" on public.profiles
+  for insert with check (auth.uid() = id);
 
 -- Skills
 drop policy if exists "Allow authenticated insert to skills" on public.skills;

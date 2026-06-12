@@ -21,11 +21,15 @@ export function useProjects() {
 
       const { data, error: err } = await supabase
         .from('projects')
-        .select('*, tools(*)')
+        .select('*, project_tools(*, tools(*))')
         .order('order_index', { ascending: true })
 
       if (err) throw err
-      setProjects(data || [])
+      const projectsWithTools = (data || []).map((project) => ({
+        ...project,
+        tools: project.project_tools?.map((pt) => pt.tools).filter(Boolean) || [],
+      }))
+      setProjects(projectsWithTools)
     } catch (err) {
       console.warn('Using local fallback projects:', err.message)
       setIsDemo(true)

@@ -69,10 +69,15 @@ export function useAdminProjects() {
       // 1. Fetch Projects (with tools relationship)
       const { data: projData, error: projErr } = await supabase
         .from('projects')
-        .select('*, tools(*)')
+        .select('*, project_tools(*, tools(*))')
         .order('order_index', { ascending: true })
 
       if (projErr) throw projErr
+
+      const projectsWithTools = (projData || []).map((project) => ({
+        ...project,
+        tools: project.project_tools?.map((pt) => pt.tools).filter(Boolean) || [],
+      }))
 
       // 2. Fetch Tools
       const { data: toolsData, error: toolsErr } = await supabase
@@ -82,7 +87,7 @@ export function useAdminProjects() {
 
       if (toolsErr) throw toolsErr
 
-      setProjects(projData || [])
+      setProjects(projectsWithTools)
       setTools(toolsData || [])
     } catch (err) {
       console.warn('Supabase fetch failed, fallback to demo mode:', err.message)
