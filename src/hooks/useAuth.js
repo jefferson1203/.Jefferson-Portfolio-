@@ -52,5 +52,23 @@ export function useAuth() {
     window.location.href = '/'
   }
 
-  return { user, loading, signIn, signOut }
+  const resetPassword = async (email) => {
+    setLoading(true)
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/admin/reset-password`,
+    })
+    setLoading(false)
+    if (error) throw error
+  }
+
+  const updatePassword = async (newPassword) => {
+    setLoading(true)
+    const { error } = await supabase.auth.updateUser({
+      password: newPassword,
+    })
+    setLoading(false)
+    if (error) throw error
+  }
+
+  return { user, loading, signIn, signOut, resetPassword, updatePassword }
 }

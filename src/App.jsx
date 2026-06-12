@@ -7,6 +7,7 @@ import Home from '@/pages/Home'
 import Projects from '@/pages/Projects'
 import Trainings from '@/pages/Trainings'
 import Login from '@/pages/admin/Login'
+import ResetPassword from '@/pages/admin/ResetPassword'
 import Dashboard from '@/pages/admin/Dashboard'
 import ManageProfile from '@/pages/admin/ManageProfile'
 import ManageProjects from '@/pages/admin/ManageProjects'
@@ -26,6 +27,7 @@ export default function App() {
 
         {/* Standalone Admin Login screen */}
         <Route path="/admin/login" element={<Login />} />
+        <Route path="/admin/reset-password" element={<ResetPassword />} />
 
         {/* Protected Admin routes inside AdminLayout */}
         <Route
