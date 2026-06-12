@@ -176,11 +176,11 @@ export default function Home() {
                           <div className="flex items-center justify-between text-xs font-semibold text-zinc-200">
                             <span>{skill.name}</span>
                             <span className="text-indigo-400">
-                              Niveau {skill.level}/5
+                              {skill.level}%
                             </span>
                           </div>
                           <Progress
-                            value={skill.level * 20}
+                            value={skill.level}
                             className="h-1.5 bg-zinc-800"
                           />
                         </div>
