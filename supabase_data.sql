@@ -138,9 +138,10 @@ ON CONFLICT DO NOTHING;
 -- =========================================================================
 -- 6. TRAININGS (Suivi d'études et certifications)
 -- =========================================================================
-INSERT INTO public.trainings (title, platform, category, status, progress, order_index) VALUES
+INSERT INTO public.trainings (title, url, platform, category, status, progress, order_index) VALUES
 (
   'Microsoft DP-600 — Fabric Analytics Engineer',
+  'https://learn.microsoft.com/credentials/certifications/exams/dp-600/',
   'Microsoft',
   'Data & IA',
   'termine',
@@ -149,6 +150,7 @@ INSERT INTO public.trainings (title, platform, category, status, progress, order
 ),
 (
   'IBM RAG & Agentic AI',
+  'https://www.coursera.org/',
   'IBM',
   'Data & IA',
   'en_cours',
@@ -157,6 +159,7 @@ INSERT INTO public.trainings (title, platform, category, status, progress, order
 ),
 (
   'Plateforme de préparation Fabric',
+  'https://learn.microsoft.com/',
   'Microsoft',
   'Data & IA',
   'termine',
@@ -165,6 +168,7 @@ INSERT INTO public.trainings (title, platform, category, status, progress, order
 ),
 (
   'Google DeepMind GenAI — omni-access (Gemini 1.5 Pro)',
+  'https://www.cloudskillsboost.google/',
   'Google',
   'Data & IA',
   'termine',
@@ -173,6 +177,7 @@ INSERT INTO public.trainings (title, platform, category, status, progress, order
 ),
 (
   'Google AI Agent Intensive — DiagnoSense',
+  'https://www.cloudskillsboost.google/',
   'Google',
   'Data & IA',
   'termine',
@@ -181,6 +186,7 @@ INSERT INTO public.trainings (title, platform, category, status, progress, order
 ),
 (
   'Google Gen AI Intensive — Architectures RAG avancées',
+  'https://www.cloudskillsboost.google/',
   'Google',
   'Data & IA',
   'termine',
