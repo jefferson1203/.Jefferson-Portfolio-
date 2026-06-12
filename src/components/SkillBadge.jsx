@@ -1,6 +1,7 @@
-import React from 'react'
 
 export default function SkillBadge({ name, category, level }) {
+  const filledDots = level > 5 ? Math.round(level / 20) : level
+
   return (
     <div className="flex flex-col gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900/40 p-3 hover:bg-zinc-900/80 hover:border-zinc-700 transition-all">
       <span className="text-sm font-semibold text-zinc-100">{name}</span>
@@ -13,7 +14,7 @@ export default function SkillBadge({ name, category, level }) {
             <div
               key={i}
               className={`h-1.5 w-1.5 rounded-full ${
-                i < level
+                i < filledDots
                   ? 'bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.6)]'
                   : 'bg-zinc-700'
               }`}

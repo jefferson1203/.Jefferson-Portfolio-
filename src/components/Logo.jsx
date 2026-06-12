@@ -1,4 +1,3 @@
-import React from 'react'
 
 const Logo = ({ size = "md", showText = true }) => {
   const sizes = {

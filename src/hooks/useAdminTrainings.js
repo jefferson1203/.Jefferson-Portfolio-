@@ -144,25 +144,21 @@ export function useAdminTrainings() {
       return
     }
 
-    try {
-      const updates = orderedList.map((t, index) => ({
-        id: t.id,
-        title: t.title,
-        platform: t.platform,
-        category: t.category,
-        status: t.status,
-        progress: t.progress,
-        notes: t.notes,
-        url: t.url,
-        order_index: index + 1,
-      }))
+    const updates = orderedList.map((t, index) => ({
+      id: t.id,
+      title: t.title,
+      platform: t.platform,
+      category: t.category,
+      status: t.status,
+      progress: t.progress,
+      notes: t.notes,
+      url: t.url,
+      order_index: index + 1,
+    }))
 
-      const { error: err } = await supabase.from('trainings').upsert(updates)
-      if (err) throw err
-      setTrainings(orderedList)
-    } catch (err) {
-      throw err
-    }
+    const { error: err } = await supabase.from('trainings').upsert(updates)
+    if (err) throw err
+    setTrainings(orderedList)
   }
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useAdminProjects } from '@/hooks/useAdminProjects'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
@@ -6,13 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
 import { Checkbox } from '@/components/ui/checkbox'
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import {
   Select,
   SelectContent,
@@ -47,11 +41,11 @@ import {
   FiEdit,
   FiArrowLeft,
   FiX,
-  FiCheck,
   FiMenu,
   FiExternalLink,
   FiUpload,
   FiLoader,
+  FiSave,
 } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 

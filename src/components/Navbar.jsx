@@ -1,6 +1,4 @@
-import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { useProfile } from '@/hooks/useProfile'
 import Logo from '@/components/Logo'
 import {
   Sheet,
@@ -13,10 +11,7 @@ import { Button } from '@/components/ui/button'
 import { FiMenu, FiLock } from 'react-icons/fi'
 
 export default function Navbar() {
-  const { profile } = useProfile()
   const location = useLocation()
-
-  const logoName = profile?.full_name || 'Jefferson'
 
   const links = [
     { name: 'Accueil', path: '/' },

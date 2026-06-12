@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Card,
   CardHeader,
@@ -17,11 +17,6 @@ import {
 } from 'react-icons/fi'
 
 export default function GitHubStats({ githubUrl }) {
-  const [stats, setStats] = useState(null)
-  const [repos, setRepos] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-
   // Extract username from GitHub URL
   const getUsername = (url) => {
     if (!url) return ''
@@ -32,11 +27,14 @@ export default function GitHubStats({ githubUrl }) {
 
   const username = getUsername(githubUrl)
 
+  const [stats, setStats] = useState(null)
+  const [repos, setRepos] = useState([])
+  const [loading, setLoading] = useState(!!username)
+  const [error, setError] = useState(null)
+
   useEffect(() => {
-    if (!username) {
-      setLoading(false)
-      return
-    }
+    if (!username) return
+
 
     const fetchGitHubData = async () => {
       setLoading(true)

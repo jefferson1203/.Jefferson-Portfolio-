@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { useProfile } from '@/hooks/useProfile'
 import { useAuth } from '@/hooks/useAuth'
 import { supabase } from '@/lib/supabase'
@@ -247,7 +247,6 @@ export default function ManageProfile() {
     addEducation,
     updateEducation,
     deleteEducation,
-    loading: hookLoading,
   } = useProfile()
 
   // Tab 1 Profile States
@@ -382,7 +381,7 @@ export default function ManageProfile() {
       const fileExt = uploadFile.name.split('.').pop()
       const fileName = `${user?.id || 'admin'}-${Date.now()}.${fileExt}`
 
-      const { data, error: uploadErr } = await supabase.storage
+      const { error: uploadErr } = await supabase.storage
         .from('avatars')
         .upload(fileName, uploadFile, { cacheControl: '3600', upsert: true })
 

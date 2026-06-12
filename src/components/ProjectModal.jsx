@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {
   Dialog,
   DialogContent,
@@ -18,6 +18,8 @@ import { Button } from '@/components/ui/button'
 import { FiExternalLink, FiGithub, FiLink } from 'react-icons/fi'
 
 export default function ProjectModal({ project, isOpen, onClose }) {
+  const [iframeError, setIframeError] = useState(false)
+
   if (!project) return null
 
   const {
@@ -30,8 +32,6 @@ export default function ProjectModal({ project, isOpen, onClose }) {
     screenshot_url,
     tools,
   } = project
-
-  const [iframeError, setIframeError] = useState(false)
 
   const getStatusBadge = () => {
     switch (status) {

@@ -12,7 +12,7 @@ import {
   CardContent,
   CardFooter,
 } from '@/components/ui/card'
-import { FiLock, FiMail, FiAlertTriangle } from 'react-icons/fi'
+import { FiLock, FiMail, FiAlertTriangle, FiCheckCircle } from 'react-icons/fi'
 
 export default function Login() {
   const { user, signIn, resetPassword } = useAuth()

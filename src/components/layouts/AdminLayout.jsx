@@ -1,4 +1,3 @@
-import React from 'react'
 import { Outlet, Link, useLocation } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 import { Button } from '@/components/ui/button'
@@ -7,8 +6,6 @@ import {
   Sheet,
   SheetContent,
   SheetTrigger,
-  SheetHeader,
-  SheetTitle,
 } from '@/components/ui/sheet'
 import {
   FiLayout,
@@ -19,28 +16,8 @@ import {
   FiMenu,
 } from 'react-icons/fi'
 
-export default function AdminLayout() {
-  const { signOut } = useAuth()
-  const location = useLocation()
-
-  const links = [
-    { name: 'Dashboard', path: '/admin/dashboard', icon: FiLayout },
-    { name: 'Profil', path: '/admin/profile', icon: FiUser },
-    { name: 'Projets', path: '/admin/projects', icon: FiGrid },
-    { name: 'Formations', path: '/admin/trainings', icon: FiTrendingUp },
-  ]
-
-  const isActive = (path) => location.pathname === path
-
-  const handleLogout = async () => {
-    try {
-      await signOut()
-    } catch (err) {
-      console.error(err)
-    }
-  }
-
-  const SidebarContent = () => (
+function SidebarContent({ links, isActive, handleLogout }) {
+  return (
     <div className="flex h-full flex-col justify-between bg-zinc-950 border-r border-zinc-900 p-6">
       <div className="flex flex-col gap-8">
         {/* Title / Logo */}
@@ -81,12 +58,34 @@ export default function AdminLayout() {
       </Button>
     </div>
   )
+}
+
+export default function AdminLayout() {
+  const { signOut } = useAuth()
+  const location = useLocation()
+
+  const links = [
+    { name: 'Dashboard', path: '/admin/dashboard', icon: FiLayout },
+    { name: 'Profil', path: '/admin/profile', icon: FiUser },
+    { name: 'Projets', path: '/admin/projects', icon: FiGrid },
+    { name: 'Formations', path: '/admin/trainings', icon: FiTrendingUp },
+  ]
+
+  const isActive = (path) => location.pathname === path
+
+  const handleLogout = async () => {
+    try {
+      await signOut()
+    } catch (err) {
+      console.error(err)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col md:flex-row antialiased">
       {/* Desktop Sidebar (visible on md+) */}
       <aside className="hidden md:block w-[240px] h-screen sticky top-0 shrink-0">
-        <SidebarContent />
+        <SidebarContent links={links} isActive={isActive} handleLogout={handleLogout} />
       </aside>
 
       {/* Mobile Header (visible on <md) */}
@@ -108,7 +107,7 @@ export default function AdminLayout() {
             side="left"
             className="bg-zinc-950 border-zinc-900 text-white p-0 w-[240px]"
           >
-            <SidebarContent />
+            <SidebarContent links={links} isActive={isActive} handleLogout={handleLogout} />
           </SheetContent>
         </Sheet>
       </div>

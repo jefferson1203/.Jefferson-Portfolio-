@@ -1,8 +1,7 @@
-import React from 'react'
 import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
-import { FiExternalLink, FiBookOpen } from 'react-icons/fi'
+import { FiBookOpen } from 'react-icons/fi'
 import { SiUdemy, SiYoutube } from 'react-icons/si'
 
 // Custom learning/graduation stack SVG representing OpenClassrooms
